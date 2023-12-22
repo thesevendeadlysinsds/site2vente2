@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <!-- Le reste du code HTML reste inchangé -->
+</head>
+<body>
+
+    <!-- Barre de navigation -->
+    <nav>
+        <!-- Le reste du code HTML reste inchangé -->
+    </nav>
+    <!-- Fin de la barre de navigation -->
+
+    <!-- Contenu du panier -->
+    <section id="content">
+        <h2>Votre Panier</h2>
+        
+        <div class="container" id="panier">
+            <!-- Le contenu du panier sera ajouté dynamiquement ici -->
+        </div>
+
+        <h3 id="total">Total: €0.00</h3>
+
+        <a href="commande.html" class="btn-commander">Passer la commande</a>
+
+    </section>
+    <!-- Fin du contenu du panier -->
+
+    <!-- Pied de page -->
+    <footer>
+        <!-- Le reste du code HTML reste inchangé -->
+    </footer>
+    <!-- Fin du pied de page -->
+
+    <!-- Script JavaScript -->
+    <script>
+        // Tableau des produits dans le panier (à remplacer par les données de votre choix)
+        let panierData = [
+            { id: 1, nom: "Produit 1", description: "Description du produit 1", prix: 70.00, image: "product1.jpg" },
+            { id: 2, nom: "Produit 2", description: "Description du produit 2", prix: 100.00, image: "product2.jpg" },
+            { id: 3, nom: "Produit 3", description: "Description du produit 3", prix: 85.00, image: "product3.jpg" },
+            { id: 4, nom: "Produit 4", description: "Description du produit 4", prix: 55.00, image: "product4.jpg" },
+            // Ajoutez les autres produits ici
+        ];
+
+        // Fonction pour afficher les produits dans le panier
+        function afficherPanier() {
+            const panierContainer = document.getElementById("panier");
+            const totalElement = document.getElementById("total");
+            let total = 0;
+
+            panierContainer.innerHTML = "";
+            panierData.forEach((produit) => {
+                const produitDiv = document.createElement("div");
+                produitDiv.classList.add("product");
+
+                const imageElement = document.createElement("img");
+                imageElement.src = produit.image;
+                imageElement.alt = produit.nom;
+                imageElement.width = 150;
+                produitDiv.appendChild(imageElement);
+
+                const nomElement = document.createElement("h3");
+                nomElement.textContent = produit.nom;
+                produitDiv.appendChild(nomElement);
+
+                const descriptionElement = document.createElement("p");
+                descriptionElement.textContent = produit.description;
+                produitDiv.appendChild(descriptionElement);
+
+                const prixElement = document.createElement("p");
+                prixElement.textContent = "Prix: €" + produit.prix.toFixed(2);
+                produitDiv.appendChild(prixElement);
+
+                const supprimerButton = document.createElement("button");
+                supprimerButton.textContent = "Supprimer";
+                supprimerButton.classList.add("btn-supprimer");
+                supprimerButton.addEventListener("click", () => {
+                    supprimerProduit(produit.id);
+                    afficherPanier();
+                });
+                produitDiv.appendChild(supprimerButton);
+
+                panierContainer.appendChild(produitDiv);
+
+                total += produit.prix;
+            });
+
+            totalElement.textContent = "Total: €" + total.toFixed(2);
+        }
+
+        // Fonction pour supprimer un produit du panier
+        function supprimerProduit(id) {
+            panierData = panierData.filter((produit) => produit.id !== id);
+        }
+
+        afficherPanier();
+    </script>
+    <!-- Fin du Script JavaScript -->
+
+</body>
+</html>

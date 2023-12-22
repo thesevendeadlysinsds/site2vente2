@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accueil</title>
+    <style>
+        /* Votre CSS ici (copiez le CSS que vous avez fourni) */
+        body {
+            font-family: 'Open Sans', sans-serif;
+            margin: 0px;
+            padding: 0px;
+            background-color: rgb(255, 255, 0);
+        }
+        /* ... (copiez le reste de votre CSS ici) ... */
+    </style>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
+    <link rel="icon" href="logo.png">
+</head>
+<body>
+
+    <!-- Barre de navigation -->
+    <nav>
+        <h1><a href="index.html"><img src="images.png" alt="Logo"></a></h1>
+        <div class="onglets">
+            <form>
+                <input type="search" placeholder="rechercher">
+            </form>
+            <p><i class="far fa-heart"></i></p>
+            <p><a href="panier.html"><i class="fas fa-shopping-cart"></i></a></p>
+        </div>
+    </nav>
+    <!-- Fin de la barre de navigation -->
+
+    <!-- Header -->
+    <header>
+        <h1>Bienvenue dans notre Boutique en Ligne</h1>
+        <button>Naviguer <i class="fas fa-paper-plane"></i></button>
+    </header>
+    <!-- Fin du Header -->
+
+    <!-- Section principale -->
+    <section id="content">
+        <h2>Nos produits</h2>
+        
+        <div class="container">
+            <div class="product">
+                <img src="product1.jpg" alt="Product 1" width="400px">
+                <h3>Produit 1</h3>
+                <p>Description du produit 1</p>
+                <p>Prix: €70.00</p>
+                <button class="ajouter-panier" data-nom="Produit 1" data-prix="70.00">Ajouter au panier</button>
+            </div>
+            
+            <div class="product">
+                <img src="product2.jpg" alt="Product 2" width="400px">
+                <h3>Produit 2</h3>
+                <p>Description du produit 2</p>
+                <p>Prix: €100.00</p>
+                <button class="ajouter-panier" data-nom="Produit 2" data-prix="100.00">Ajouter au panier</button>
+            </div>
+
+            <!-- Ajoutez les autres produits ici avec les boutons "Ajouter au panier" -->
+
+            <div class="product">
+                <img src="product3.jpg" alt="Product 3" width="400px">
+                <h3>Produit 3</h3>
+                <p>Description du produit 3</p>
+                <p>Prix: €100.00</p>
+                <button class="ajouter-panier" data-nom="Produit 3" data-prix="100.00">Ajouter au panier</button>
+            </div>
+            
+            <div class="product">
+                <img src="product4.jpg" alt="Product 4" width="400px">
+                <h3>Produit 4</h3>
+                <p>Description du produit 4</p>
+                <p>Prix: €70.00</p>
+                <button class="ajouter-panier" data-nom="Produit 4" data-prix="70.00">Ajouter au panier</button>
+            </div>
+            
+            <div class="product">
+                <img src="product5.jpg" alt="Product 5" width="400px">
+                <h3>Produit 5</h3>
+                <p>Description du produit 5</p>
+                <p>Prix: €70.00</p>
+                <button class="ajouter-panier" data-nom="Produit 5" data-prix="70.00">Ajouter au panier</button>
+            </div>
+            
+            <div class="product">
+                <img src="product6.jpg" alt="Product 6" width="400px">
+                <h3>Produit 6</h3>
+                <p>Description du produit 6</p>
+                <p>Prix: €150.00</p>
+                <button class="ajouter-panier" data-nom="Produit 6" data-prix="150.00">Ajouter au panier</button>
+            </div>
+            
+            <div class="product">
+                <img src="product7.jpg" alt="Product 7" width="400px">
+                <h3>Produit 7</h3>
+                <p>Description du produit 7</p>
+                <p>Prix: €190.00</p>
+                <button class="ajouter-panier" data-nom="Produit 7" data-prix="190.00">Ajouter au panier</button>
+            </div>
+            
+        </div>
+
+        <script>
+            /* Votre JavaScript ici (copiez le JavaScript que vous avez fourni) */
+            const boutonsAjouterPanier = document.querySelectorAll(".ajouter-panier");
+            boutonsAjouterPanier.forEach(bouton => {
+                bouton.addEventListener("click", () => {
+                    const nom = bouton.getAttribute("data-nom");
+                    const prix = parseFloat(bouton.getAttribute("data-prix"));
+                    ajouterAuPanier(nom, prix);
+                    window.location.href = "panier.html";
+                });
+            });
+
+            function ajouterAuPanier(nom, prix) {
+                let panier = JSON.parse(localStorage.getItem("panier")) || [];
+                panier.push({ nom, prix });
+                localStorage.setItem("panier", JSON.stringify(panier));
+            }
+        </script>
+    </section>
+    <!-- Fin section principale -->
+</body>
+</html>
